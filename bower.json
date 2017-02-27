@@ -1,6 +1,6 @@
 {
   "name": "angular-perfect-scrollbar-bb",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A directive to allow the use of perfect scrollbar in angular. Forked from https://github.com/adm-bb/angular-perfect-scrollbar-bb",
   "main": "src/angular-perfect-scrollbar.js",
   "keywords": [

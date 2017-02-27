@@ -15,6 +15,13 @@ angular.module('perfect_scrollbar', []).directive('perfectScrollbar',
       transclude: true,
       template: '<div><div ng-transclude></div></div>',
       replace: true,
+      scope: {
+        scrollToTop: '=',
+        scrollToPos: '=',
+        elementSize: '=',
+        itemPosition: '=',
+        elementScrollOffset: "="
+      },
       link: function($scope, $elem, $attr) {
         if ($attr.perfectScrollbar == "false") return;
         var el = $elem[0];
@@ -69,18 +76,13 @@ angular.module('perfect_scrollbar', []).directive('perfectScrollbar',
       $scope.$watch('scrollToPos', function(n,o) {
           if(n) {
 
-            // work around if the values are on the scope instead of the controller
-            if(!$scope.vm){
-              $scope.vm = $scope;
-            }
-
             // move higher or lower to show the item
-            if(($scope.vm.itemPosition - $scope.vm.elementSize) <= $elem.scrollTop()){
-              $elem.scrollTop($scope.vm.itemPosition - $scope.vm.elementSize);
+            if(($scope.itemPosition - $scope.elementSize) <= $elem.scrollTop()){
+              $elem.scrollTop($scope.itemPosition - $scope.elementSize);
             }
-            else if (($scope.vm.itemPosition + $scope.vm.elementSize) >= ($elem.scrollTop() + $elem.height() - $scope.vm.elementScrollOffset))
+            else if (($scope.itemPosition + $scope.elementSize) >= ($elem.scrollTop() + $elem.height() - $scope.elementScrollOffset))
             {
-              $elem.scrollTop($scope.vm.itemPosition - $scope.vm.elementSize);
+              $elem.scrollTop($scope.itemPosition - $scope.elementSize);
             }
             // otherwise item should already be in view.
 
